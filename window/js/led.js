@@ -61,9 +61,15 @@ function setupBoard() {
       {
         $('#tempo').effect("shake");
         setColor(0);
+        console.log("hot bois");
       }
-      else if(this.fahrenheit<70 || this.fahrenheit>65){
+      else if(this.fahrenheit<70 && this.fahrenheit>65){
         setColor(1);
+        console.log("safe bois");
+      }
+      else if(this.fahrenheit<65){
+        setColor(2);
+        console.log("cold bois");
       }
     });
   }
