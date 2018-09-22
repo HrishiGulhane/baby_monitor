@@ -2,6 +2,7 @@ var five = require("johnny-five");
 let $ = require("jquery");
 
 
+
 function setupBoard() {
     board = new five.Board({ repl: false });
 
@@ -115,8 +116,9 @@ function alertLights(){
   console.log("red");
   led.on();
   led.color("#FF0000");
-  led.strobe(200);
-  setTimeout(alertBlue,500);
+  led.strobe(100);
+  led.off();
+  setTimeout(alertBlue,1000);
 }
 
 function alertBlue(){
@@ -131,7 +133,9 @@ function alertBlue(){
   led.color("#0000FF");
   led.strobe(200);
   console.log("blue");
-  setTimeout(alertLights,500);
+  led.off();
+
+  setTimeout(alertLights,1000);
 
 }
 
