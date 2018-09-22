@@ -10,6 +10,7 @@ function setupBoard() {
       console.log("led initialised.");
       this.samplingInterval(1000);
       tempo();
+      sliderChange();
       // sweep();
     })
   
@@ -92,18 +93,24 @@ function setColor(index){
   ____) || |____ | | \ \   \  /  | |__| |
  |_____/ |______||_|  \_\   \/    \____/                                                                                   
 */
-                                
- function sweep(){
+  function sliderChange(val){
+    $('#out').html(val);
+    sweep(val);
+
+  }  
+
+
+ function sweep(val){
   var servo = new five.Servo({
     pin:3,
     center: true,
-    range: [45,135], 
+    // range: [45,135], 
   });
   // servo.center();
-  servo.sweep({
-    interval: 500,
-  });
-  // servo.to(90);
+  // servo.sweep({
+  //   interval: 500,
+  // });
+  servo.to(val);
  }     
 /* 
   __  __   ____  _______  ____   _____  
