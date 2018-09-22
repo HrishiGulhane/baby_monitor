@@ -8,8 +8,9 @@ function setupBoard() {
     board.on("ready", function() {
       led = new five.Led(13);
       console.log("led initialised.");
-      this.samplingInterval(500);
+      this.samplingInterval(1000);
       tempo();
+      // sweep();
     })
   
     // board.on("ready", rgbtest());
@@ -46,6 +47,10 @@ function setupBoard() {
       if(this.fahrenheit>70)
       {
         // $('#tempo').effect("shake");
+        setColor(0);
+      }
+      else if(this.fahrenheit<70 || this.fahrenheit>65){
+        setColor(1);
       }
     });
   }
@@ -73,7 +78,7 @@ function setColor(index){
   // Turn it on and set the initial color
   led.on();
   led.color(myColor[index]);
-  led.intensity(30);
+  // led.intensity(30);
 
 }
 
@@ -88,7 +93,18 @@ function setColor(index){
  |_____/ |______||_|  \_\   \/    \____/                                                                                   
 */
                                 
-      
+ function sweep(){
+  var servo = new five.Servo({
+    pin:3,
+    center: true,
+    range: [45,135], 
+  });
+  // servo.center();
+  servo.sweep({
+    interval: 500,
+  });
+  // servo.to(90);
+ }     
 /* 
   __  __   ____  _______  ____   _____  
  |  \/  | / __ \|__   __|/ __ \ |  __ \ 
@@ -98,11 +114,3 @@ function setColor(index){
  |_|  |_| \____/   |_|   \____/ |_|  \_\                                       
 */
 
-/* 
-  _____    _____  ____  
- |  __ \  / ____||  _ \ 
- | |__) || |  __ | |_) |
- |  _  / | | |_ ||  _ < 
- | | \ \ | |__| || |_) |
- |_|  \_\ \_____||____/ 
-*/
