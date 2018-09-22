@@ -6,11 +6,12 @@ function setupBoard() {
     board = new five.Board({ repl: false });
 
     board.on("ready", function() {
-      led = new five.Led(13);
+      led13 = new five.Led(13);
       console.log("led initialised.");
       this.samplingInterval(1000);
       tempo();
       sliderChange();
+      setupLed();
       // sweep();
     })
   
@@ -23,7 +24,15 @@ function setupBoard() {
     console.log("gitbuy"); */
     // tempo();
   }
-
+/* 
+  _    _  _____ 
+ | |  | ||_   _|
+ | |  | |  | |  
+ | |  | |  | |  
+ | |__| | _| |_ 
+  \____/ |_____|
+                
+*/
 
 /* 
   _______  ______  __  __  _____  
@@ -48,10 +57,10 @@ function setupBoard() {
       if(this.fahrenheit>70)
       {
         // $('#tempo').effect("shake");
-        setColor(0);
+        // setColor(0);
       }
       else if(this.fahrenheit<70 || this.fahrenheit>65){
-        setColor(1);
+        // setColor(1);
       }
     });
   }
@@ -65,6 +74,18 @@ function setupBoard() {
  | | \ \ | |__| || |_) |
  |_|  \_\ \_____||____/ 
 */
+function setupLed(){
+
+ 
+    var led = new five.Led.RGB({
+      pins: {
+        red: 9,
+        green: 10,
+        blue: 11
+      }
+    });
+   
+}
 
 function setColor(index){
   var led = new five.Led.RGB({
@@ -74,12 +95,43 @@ function setColor(index){
       blue: 11
     }
   });
-
   var myColor = ['FF0000', '00FF00', '0000FF'];
   // Turn it on and set the initial color
-  led.on();
-  led.color(myColor[index]);
+  // led.on();
+  // led.color(myColor[index]);
   // led.intensity(30);
+
+}
+
+function alertLights(){
+  
+  var led = new five.Led.RGB({
+    pins: {
+      red: 9,
+      green: 10,
+      blue: 11
+    }
+  });
+  console.log("red");
+  led.on();
+  led.color("#FF0000");
+  led.strobe(200);
+  setTimeout(alertBlue,500);
+}
+
+function alertBlue(){
+  var led = new five.Led.RGB({
+    pins: {
+      red: 9,
+      green: 10,
+      blue: 11
+    }
+  });
+  led.on();
+  led.color("#0000FF");
+  led.strobe(200);
+  console.log("blue");
+  setTimeout(alertLights,500);
 
 }
 
@@ -120,4 +172,27 @@ function setColor(index){
  | |  | || |__| |  | |  | |__| || | \ \ 
  |_|  |_| \____/   |_|   \____/ |_|  \_\                                       
 */
+function fanSlider(val)
+{
+  $('#fan').html(val);
+    fan(val);
+}
 
+function fan(val){
+
+  motor = new five.Motor({
+    pins: {
+      pwm: 6,
+      dir: 5,
+      cdir: 4
+    }
+  });
+  if(val>0){
+    motor.forward(val);
+  }
+  else if(val<0){
+    var posValue=val*-1;
+    motor.reverse(posValue);
+  }
+  
+}
