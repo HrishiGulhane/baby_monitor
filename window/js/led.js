@@ -7,12 +7,13 @@ function setupBoard() {
     board = new five.Board({ repl: false });
 
     board.on("ready", function() {
-      led13 = new five.Led(13);
+      led = new five.Led(13);
       console.log("led initialised.");
       this.samplingInterval(1000);
       tempo();
       sliderChange();
-      setupLed();
+      // setColor();
+      // setupLed();
       // sweep();
     })
   
@@ -58,11 +59,11 @@ function setupBoard() {
 
       if(this.fahrenheit>70)
       {
-        // $('#tempo').effect("shake");
-        // setColor(0);
+        $('#tempo').effect("shake");
+        setColor(0);
       }
       else if(this.fahrenheit<70 || this.fahrenheit>65){
-        // setColor(1);
+        setColor(1);
       }
     });
   }
@@ -76,18 +77,6 @@ function setupBoard() {
  | | \ \ | |__| || |_) |
  |_|  \_\ \_____||____/ 
 */
-function setupLed(){
-
- 
-    var led = new five.Led.RGB({
-      pins: {
-        red: 9,
-        green: 10,
-        blue: 11
-      }
-    });
-   
-}
 
 function setColor(index){
   var led = new five.Led.RGB({
@@ -99,9 +88,8 @@ function setColor(index){
   });
   var myColor = ['FF0000', '00FF00', '0000FF'];
   // Turn it on and set the initial color
-  // led.on();
-  // led.color(myColor[index]);
-  // led.intensity(30);
+  led.on();
+  led.color(myColor[index]);
 
 }
 
