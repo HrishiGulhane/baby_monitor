@@ -23,6 +23,8 @@ function uiSequence() {
         c_name = $('#c_name').val();
         p_name = $('#p_name').val();
         testname();
+        $('#home_screen').fadeIn(700);
+    $('#welcome_screen').fadeOut(700);
     });
 
 
