@@ -126,6 +126,7 @@ function alertLights(){
   led.strobe(100);
   led.off();
   setTimeout(alertBlue,1000);
+  
 }
 
 function alertBlue(){

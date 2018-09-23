@@ -9,7 +9,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>jewlas kayaaaaa</h1>
+    <div id="details">
+        <h1 id="welcome">Welcome to BabyMonitor</h1>
+        <input type="text" id="name" placeholder="Enter childs name">
+        <input type="text" id="p_name" placeholder="Enter your name">
+    </div>
+    <h1>jewlas ka</h1>
     <button id="jewlas"></button>
     <h2 id="tempo"></h2>
     <input id="slider" type="range" min="30" max="150" value="90" step="5" oninput="sliderChange(this.value)">
@@ -18,13 +23,19 @@
     <h2 id="fan"></h2>
 
 </body>
-<script>window.$ = window.jQuery = require('jquery');</script>
+<!-- remove at build please -->
+<!-- <script>window.$ = window.jQuery = require('jquery');</script> -->
+<script src="js/jquery-3.3.1.min.js"></script> 
+<!-- remove at build please -->
 <script src="js/jquery-ui.min.js"></script>
-<script src="js/led.js"></script>
-<script>
+
+<!-- <script src="js/led.js"></script> -->
+<!-- suspend for now and make new ui js -->
+<!-- <script>
  window.onload = function() {
             setupBoard();
             // rgbtest();
         }
-   </script>
+   </script> -->
+   <!-- suspend for now and make new ui js -->
 </html>
