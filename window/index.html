@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,31 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div id="details">
+    <div id="welcome_screen">
         <h1 id="welcome">Welcome to BabyMonitor</h1>
-        <input type="text" id="name" placeholder="Enter childs name">
+        <input type="text" id="c_name" placeholder="Enter childs name">
+        <br>
         <input type="text" id="p_name" placeholder="Enter your name">
+        <br>
+        <button type="submit" id="login">Login</button>
     </div>
-    <h1>jewlas ka</h1>
-    <button id="jewlas"></button>
-    <h2 id="tempo"></h2>
-    <input id="slider" type="range" min="30" max="150" value="90" step="5" oninput="sliderChange(this.value)">
-    <h2 id="out"></h2>
-    <input id="slider" type="range" min="-255" max="255" value="0" step="5" oninput="fanSlider(this.value)">
-    <h2 id="fan"></h2>
+
+    <div id="home_screen">
+        <h1>jewlas ka</h1>
+        <button id="jewlas"></button>
+        <h2 id="tempo"></h2>
+        <input id="slider" type="range" min="30" max="150" value="90" step="5" oninput="sliderChange(this.value)">
+        <h2 id="out"></h2>
+        <input id="slider" type="range" min="-255" max="255" value="0" step="5" oninput="fanSlider(this.value)">
+        <h2 id="fan"></h2>
+    </div>
 
 </body>
 <!-- remove at build please -->
 <!-- <script>window.$ = window.jQuery = require('jquery');</script> -->
-<script src="js/jquery-3.3.1.min.js"></script> 
+<script src="js/jquery-3.3.1.min.js"></script>
 <!-- remove at build please -->
 <script src="js/jquery-ui.min.js"></script>
 
@@ -37,5 +45,10 @@
             // rgbtest();
         }
    </script> -->
-   <!-- suspend for now and make new ui js -->
+<!-- suspend for now and make new ui js -->
+<script src="js/interface.js"></script>
+<script>
+
+</script>
+
 </html>

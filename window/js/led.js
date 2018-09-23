@@ -11,6 +11,7 @@ function setupBoard() {
       this.samplingInterval(1000);
       tempo();
       sliderChange();
+      uiSequence();
       // setColor();
       // setupLed();
       // sweep();
@@ -25,16 +26,6 @@ function setupBoard() {
     console.log("gitbuy"); */
     // tempo();
   }
-/* 
-  _    _  _____ 
- | |  | ||_   _|
- | |  | |  | |  
- | |  | |  | |  
- | |__| | _| |_ 
-  \____/ |_____|
-                
-*/
-
 
 /* 
   _______  ______  __  __  _____  
@@ -126,7 +117,7 @@ function alertLights(){
   led.strobe(100);
   led.off();
   setTimeout(alertBlue,1000);
-  
+
 }
 
 function alertBlue(){
