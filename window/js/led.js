@@ -1,7 +1,6 @@
 var five = require("johnny-five");
 let $ = require("jquery");
-
-
+var lightGate=true;
 
 function setupBoard() {
     board = new five.Board({ repl: false });
@@ -62,14 +61,22 @@ function setupBoard() {
         $('#tempo').effect("shake");
         setColor(0);
         console.log("hot bois");
+        sweep(150);
+      
       }
       else if(this.fahrenheit<70 && this.fahrenheit>65){
         setColor(1);
         console.log("safe bois");
+        sweep(90);
+       
+
       }
       else if(this.fahrenheit<65){
         setColor(2);
         console.log("cold bois");
+        sweep(30);
+        
+
       }
     });
   }
@@ -92,10 +99,14 @@ function setColor(index){
       blue: 11
     }
   });
+
+  if(lightGate=true){
   var myColor = ['FF0000', '00FF00', '0000FF'];
   // Turn it on and set the initial color
+    console.log("light gate");
   led.on();
   led.color(myColor[index]);
+  }
 
 }
 
@@ -108,6 +119,7 @@ function alertLights(){
       blue: 11
     }
   });
+  lightGate=false;
   console.log("red");
   led.on();
   led.color("#FF0000");
