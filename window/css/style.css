@@ -136,6 +136,7 @@ h1#topMessage{
     position: relative;
     display: inline;
     text-align: center;
+    
 
 }
 .green#outer{
@@ -173,11 +174,12 @@ h1#topMessage{
     background: linear-gradient(-45deg, #56CCF2, #1CB5E0,#2F80ED 90%);
  
     background-size: 400% 400%;
-      animation: Gradient 1s ease-in-out infinite;
+      animation: Gradient 1s ease-in-out infinite,pulse_animation 1s ease-in-out infinite ;
     box-shadow:0px 0px 50px #385a94;
     /* transition-duration: 1000ms;
     transition-timing-function: ease-in-out; */
     /* transition: background 1000ms linear; */
+
 }
 
 .red#outer{
@@ -194,11 +196,12 @@ h1#topMessage{
    
  
     background-size: 400% 400%;
-      animation: Gradient 1s ease-in-out infinite;
+      animation: Gradient 1s ease-in-out infinite,pulse_animation 1s ease-in-out infinite  ;
     box-shadow:0px 0px 50px #385a94;
     /* transition-duration: 1000ms;
     transition-timing-function: ease-in-out; */
     /* transition: background 1000ms linear; */
+    /* animation-name: ; */
 }
 
 @keyframes Gradient {
@@ -212,6 +215,20 @@ h1#topMessage{
 		background-position: 0% 50%
 	}
 }
+
+@keyframes pulse_animation {
+    0% { transform: scale(1); }
+    30% { transform: scale(1); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+
+
 
 #inner{
     position: absolute;
@@ -248,11 +265,12 @@ h1#tempo
 #slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-     width: 300px;
+     width: 250px;
     height: 10px;
     background: linear-gradient(90deg,#1CB5E0 ,#56CCF2,  #ffffff, #f5af19,#f12711 );
     border-radius: 10px;
-    opacity:0.4;
+    opacity:1;
+    margin: 35px 10px;
 }
 #slider:hover{
     opacity:1;
@@ -266,5 +284,58 @@ h1#tempo
     cursor: pointer;
 }
 
+#fanControl{
+    /* height: 200px; */
+    /* width: 500px; */
+    /* background: #1CB5E0; */
+    display: inline;
+    
+}
+div#fan{
+    float:left;
+    margin: 25px 10px;
+}
+div#fan svg{
+    animation-name: rotate; 
+    animation-duration: 2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    width: 30px;
+    height: 30px;
+}
+div#fan svg .fill
+{
+    fill: rgb(168, 168, 168);
+}
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
 
 
+#nav{
+    position:fixed;
+    height: 100px;
+    width: 100%;
+    background-color: rgba(28, 181, 224, 0.116);
+    top: 0;
+    box-shadow:0 4px 16px rgba(28, 181, 224, 0.479);
+
+}
+#navLogo{
+    float :left;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+div#navLogo svg{
+    width: 60px;
+    height: 60px;
+}
+h2#logoName{
+    font-family: 'IBM Plex Sans', sans-serif; 
+    color: #959290;
+    margin-left: 130px;
+}
+div#navLogo svg .fill{
+    fill: #1CB5E0;
+}
