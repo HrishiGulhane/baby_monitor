@@ -59,7 +59,7 @@ function login() {
             event.preventDefault();
             c_name = $('#c_name').val();
             p_name = $('#p_name').val();
-            $('#topMessage').html('Welcome '+p+" this is baby "+c+"'s dashboard");
+            $('#topMessage').html('Welcome '+p+", this is baby "+c+"'s dashboard");
             $('#wrapper_home').fadeIn(700);
             $('#welcome_screen').fadeOut(700);
         }

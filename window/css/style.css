@@ -27,7 +27,7 @@ h1#invalid{
 }
 #wrapper{
     position: absolute;
-    background: #f1f1f1;
+    background: #fcfcfc;
     width: 100%;
     height: 100%;
     display: flex;
@@ -115,7 +115,7 @@ h1#welcome{
 
 #wrapper_home{
     position: absolute;
-    background: #f1f1f1;
+    background: #fcfcfc;
     width: 100%;
     height: 100%;
     display: flex;
@@ -126,6 +126,7 @@ h1#welcome{
 #home_screen{
     /* position: absolute; */
     /* display: flex; */
+    margin-top: 80px;
     width: 50%;
     /* align-items: center; */
     /* justify-content: center; */
@@ -133,23 +134,54 @@ h1#welcome{
     /* display: flex; */
     /* flex-direction: column; */
 }
-h1#topMessage{
+
+#updates{
+    display: inline-flex;
     background-color: #ffffff;
     /* height: 150px; */
-    border-radius: 10px;
+    border-radius: 50px;
     box-shadow: 0px 0px 20px #bebebe;
+    margin-bottom: 20px;
+    padding: 5px 5px;
+}
+#updates img{
+    border-radius: 50px;
+    padding-right: 10px;
+}
+
+h1#topMessage{
+    font-family: 'Open Sans', sans-serif;
     /* display:flex; */
     top: 0;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 24px;
+    padding-right: 10px;
+    font-size: 18px;
     margin-bottom: 0;
     align-items: center;
     text-align: center;
     /* text-overflow: ellipsis; */
 
+}
+
+h1#current{
+    position: relative;
+    /* display:inline-block; */
+    margin: auto;
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    /* text-shadow: 1px 1px 4px; */
+    font-size: 20px;
+    padding-bottom: 20px;
+
+}
+h1#fanText{
+    position: relative;
+    /* display:inline-block; */
+    margin: auto;
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    /* text-shadow: 1px 1px 4px; */
+    font-size: 20px;
+    padding-bottom: 20px;
 }
 #outer_wrapper{
     margin: 0 auto;
@@ -360,6 +392,7 @@ div#fan svg .fill
     background-color: rgba(185, 215, 223, 0.116);
     top: 0;
     box-shadow:0 4px 16px rgba(28, 181, 224, 0.479);
+    margin-bottom: 50px;
 
 }
 #navLogo{
