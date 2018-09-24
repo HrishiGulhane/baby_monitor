@@ -17,6 +17,7 @@ $(document).ready(function () {
 function uiSequence() {
     $('#home_screen').hide(0);
     $('#welcome_screen').fadeIn(6000);
+    // $('#outer').('green');
 
     $('#login').click(function () {
         event.preventDefault();
@@ -25,6 +26,22 @@ function uiSequence() {
         testname();
         $('#home_screen').fadeIn(700);
     $('#welcome_screen').fadeOut(700);
+
+
+    });
+
+    $('#colorbro').click(function(){
+        console.log('jelas ka');
+        /* $('#outer').css("background", "");
+
+        $('#outer').css("background", "linear-gradient(-45deg,#ff0000,rgb(1, 227, 91), #0000ff)");
+        $('#outer').css('animation', 'Gradient 3s ease infinite'); */
+       
+            $('#outer').toggleClass('red');
+
+     
+
+        
     });
 
 
