@@ -37,7 +37,7 @@ function uiSequence() {
         $('#outer').css("background", "linear-gradient(-45deg,#ff0000,rgb(1, 227, 91), #0000ff)");
         $('#outer').css('animation', 'Gradient 3s ease infinite'); */
        
-            $('#outer').toggleClass('red');
+            $('#outer').toggleClass('blue');
 
      
 
