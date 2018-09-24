@@ -48,6 +48,7 @@ function tempo() {
     $('#tempo').html(this.fahrenheit + "°");
 
     if (this.fahrenheit > 102) {
+      clearTime();
       $('#wrapper_alert').hide(0);
 
         if (this.fahrenheit > 104) {
@@ -69,6 +70,7 @@ function tempo() {
     
     
     else if (this.fahrenheit < 100.4 && this.fahrenheit > 97.7) {
+      clearTime();
       $('#wrapper_alert').hide(0);
       setColor(1);
       console.log("safe bois");
@@ -83,6 +85,7 @@ function tempo() {
       setColor(2);
       console.log("cold bois");
       sweep(30);
+      clearTime();
 
         if (this.fahrenheit < 95) {
           console.log("hypothermia");
@@ -119,19 +122,16 @@ function setColor(index) {
       blue: 11
     }
   });
-
-/*   if (lightGate = true) {
+  if(lightGate=true){
     var myColor = ['FF0000', '00FF00', '0000FF'];
     // Turn it on and set the initial color
-    console.log("light gate");
     led.on();
     led.color(myColor[index]);
-  } */
-
+  } 
 }
 
-function alertLights() {
 
+function alertLights() {
   var led = new five.Led.RGB({
     pins: {
       red: 9,
@@ -139,8 +139,6 @@ function alertLights() {
       blue: 11
     }
   });
-  lightGate = false;
-  console.log("red");
   led.on();
   led.color("#FF0000");
   led.strobe(100);
@@ -162,15 +160,15 @@ function alertBlue() {
   led.strobe(200);
   console.log("blue");
   led.off();
-
   timeRed=setTimeout(alertLights, 1000);
-
 }
 
 function clearTime(){
   clearTimeout(timeBlue);
+  console.log(timeBlue);
   clearTimeout(timeRed);
-}
+  console.log(timeRed);
+  }
 
 
 
