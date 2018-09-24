@@ -10,43 +10,60 @@
 var c_name;
 var p_name;
 $(document).ready(function () {
+    $('#home_screen').hide(0);
     uiSequence();
 });
 
 
 function uiSequence() {
-    $('#home_screen').hide(0);
+
     $('#welcome_screen').fadeIn(6000);
     // $('#outer').('green');
-
-    $('#login').click(function () {
-        event.preventDefault();
-        c_name = $('#c_name').val();
-        p_name = $('#p_name').val();
-        testname();
-        $('#home_screen').fadeIn(700);
-    $('#welcome_screen').fadeOut(700);
+    login();
 
 
-    });
 
-    $('#colorbro').click(function(){
+
+
+    $('#colorbro').click(function () {
         console.log('jelas ka');
         /* $('#outer').css("background", "");
 
         $('#outer').css("background", "linear-gradient(-45deg,#ff0000,rgb(1, 227, 91), #0000ff)");
         $('#outer').css('animation', 'Gradient 3s ease infinite'); */
-       
-            $('#outer').toggleClass('blue');
 
-     
-
-        
+        $('#outer').toggleClass('blue');
     });
-   
+
 
 }
 
 function testname() {
     console.log(c_name, p_name)
 }
+
+function login() {
+
+    $('#login').click(function () {
+        var c = $('#c_name').val();
+        var p = $('#p_name').val();
+
+        if (c.length == "" && p.length == "") {
+            console.log('No Input');
+            $('#invalid').html('INVALID NAMES');
+            $('#c_name').effect("shake", { times: 2 }, 400);
+            $('#p_name').effect("shake", { times: 2 }, 400);
+
+        }
+        else if (c.length > 1 && p.length > 1) {
+            event.preventDefault();
+            c_name = $('#c_name').val();
+            p_name = $('#p_name').val();
+            testname();
+            $('#home_screen').fadeIn(700);
+            $('#welcome_screen').fadeOut(700);
+        }
+    });
+}
+
+
