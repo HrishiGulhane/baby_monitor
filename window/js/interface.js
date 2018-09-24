@@ -11,7 +11,7 @@ var c_name;
 var p_name;
 $(document).ready(function () {
     $('#wrapper_home').hide(0);
-    // $('#wrapper').hide(0);
+    $('#wrapper').show(0);
     $('#wrapper_alert').hide(0);
 
     uiSequence();
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 function uiSequence() {
 
-    $('#welcome_screen').fadeIn(6000);
+    $('#wrapper').fadeIn(600);
      login();
 
 

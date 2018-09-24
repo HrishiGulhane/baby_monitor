@@ -443,9 +443,24 @@ div#warning svg{
 div#warning svg .fill{
     fill: rgb(231, 216, 0);
 }
+#action{
+    text-align: center;
 
+}
 
 h1#final{
     text-align: center;
     font-size: 25px;
+}
+
+button#emergency{
+    background-color: #f12711;
+    margin: 0 20px;
+    box-shadow: 2px 2px 4px #f1271193;
+
+}
+button#police{
+    background-color: #2F80ED;
+    margin: 0 20px;
+    box-shadow: 2px 2px 4px rgba(47, 129, 237, 0.541);
 }
