@@ -10,7 +10,7 @@
 var c_name;
 var p_name;
 $(document).ready(function () {
-    $('#home_screen').hide(0);
+    $('#wrapper_home').hide(0);
     uiSequence();
 });
 
@@ -59,8 +59,8 @@ function login() {
             event.preventDefault();
             c_name = $('#c_name').val();
             p_name = $('#p_name').val();
-            testname();
-            $('#home_screen').fadeIn(700);
+            $('#topMessage').html('Welcome '+p+" this is baby "+c+"'s dashboard");
+            $('#wrapper_home').fadeIn(700);
             $('#welcome_screen').fadeOut(700);
         }
     });

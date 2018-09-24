@@ -109,8 +109,34 @@ h1#welcome{
 }
 
 
-#home_screen{
+
+
+
+#wrapper_home{
     position: absolute;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home_screen{
+    position: relative;
+    display: inline;
+    /* align-items: center; */
+    /* justify-content: center; */
+    text-align: center;
+}
+h1#topMessage{
+    font-size: 15px;
+}
+#outer{
+    position: relative;
+    display: inline;
+    text-align: center;
+
 }
 .green#outer{
     background: #385a94;
@@ -189,7 +215,7 @@ h1#welcome{
 
 #inner{
     position: absolute;
-    background: #e9e9e9;
+    background: #f1f1f1;
     border-radius: 50%;
     height: 250px;
     width: 250px;
@@ -223,10 +249,21 @@ h1#tempo
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
      width: 300px;
-    height: 20px;
+    height: 10px;
     background: linear-gradient(90deg,#1CB5E0 ,#56CCF2,  #ffffff, #f5af19,#f12711 );
     border-radius: 10px;
-    opacity: 10%;
+    opacity:0.4;
+}
+#slider:hover{
+    opacity:1;
+
+}
+#slider::-webkit-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
 }
 
 
