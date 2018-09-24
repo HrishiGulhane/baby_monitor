@@ -1,31 +1,31 @@
 var five = require("johnny-five");
 let $ = require("jquery");
-var lightGate=true;
-
+var timeBlue;
+var timeRed;
 function setupBoard() {
-    board = new five.Board({ repl: false });
+  board = new five.Board({ repl: false });
 
-    board.on("ready", function() {
-      led = new five.Led(13);
-      console.log("led initialised.");
-      this.samplingInterval(1000);
-      tempo();
-      sliderChange();
-      uiSequence();
-      // setColor();
-      // setupLed();
-      // sweep();
-    })
-  
-    // board.on("ready", rgbtest());
-/*     board.on("ready", function() {
-      led = new five.Led(13);
-      led.blink(500);
-      console.log("led initialised.")
-    })
-    console.log("gitbuy"); */
+  board.on("ready", function () {
+    led = new five.Led(13);
+    console.log("led initialised.");
+    this.samplingInterval(1000);
     // tempo();
-  }
+    sliderChange();
+    uiSequence();
+    // setColor();
+    // setupLed();
+    // sweep();
+  })
+
+  // board.on("ready", rgbtest());
+  /*     board.on("ready", function() {
+        led = new five.Led(13);
+        led.blink(500);
+        console.log("led initialised.")
+      })
+      console.log("gitbuy"); */
+  // tempo();
+}
 
 /* 
   _______  ______  __  __  _____  
@@ -36,41 +36,70 @@ function setupBoard() {
     |_|   |______||_|  |_||_|     
 */
 
-  function tempo(){
-    console.log("poop");
-    var temperature = new five.Thermometer({
-      controller: "TMP36",
-      pin: "A0"
-    });
-  
-    temperature.on("change", function() {
-      console.log(this.celsius + "°C", this.fahrenheit + "°F");
-      $('#tempo').html(this.fahrenheit);
+function tempo() {
+  console.log("poop");
+  var temperature = new five.Thermometer({
+    controller: "TMP36",
+    pin: "A0"
+  });
 
-      if(this.fahrenheit>70)
-      {
-        $('#tempo').effect("shake");
-        setColor(0);
-        console.log("hot bois");
-        sweep(150);
-      
-      }
-      else if(this.fahrenheit<70 && this.fahrenheit>65){
-        setColor(1);
-        console.log("safe bois");
-        sweep(90);
-       
+  temperature.on("change", function () {
+    console.log(this.celsius + "°C", this.fahrenheit + "°F");
+    $('#tempo').html(this.fahrenheit + "°");
 
-      }
-      else if(this.fahrenheit<65){
-        setColor(2);
-        console.log("cold bois");
-        sweep(30);
-        
+    if (this.fahrenheit > 102) {
+      $('#wrapper_alert').hide(0);
 
-      }
-    });
-  }
+        if (this.fahrenheit > 104) {
+          console.log("104 bubsubsu");
+          alertLights()
+         /*  $('#wrapper_home').hide(0);
+          $('#wrapper').hide(0); */
+          $('#wrapper_alert').show(0);
+        }
+        else {
+          $('#tempo').effect("shake");
+          setColor(0);
+          console.log("hot bois");
+          sweep(150);
+          // $('#outer').toggleClass('red');
+          $('#outer').attr('class', 'red');
+        }
+    }
+    
+    
+    else if (this.fahrenheit < 100.4 && this.fahrenheit > 97.7) {
+      $('#wrapper_alert').hide(0);
+      setColor(1);
+      console.log("safe bois");
+      sweep(90);
+      // $('#outer').toggleClass('green');
+      $('#outer').attr('class', 'green');
+    }
+    
+    
+    else if (this.fahrenheit < 96) {
+      $('#wrapper_alert').hide(0);
+      setColor(2);
+      console.log("cold bois");
+      sweep(30);
+
+        if (this.fahrenheit < 95) {
+          console.log("hypothermia");
+          $('#wrapper_alert').show(0);
+          alertLights();
+        }
+
+      // $('#outer').toggleClass('blue');
+      $('#outer').attr('class', 'blue');
+
+
+
+    }
+
+
+  });
+}
 
 
 /* 
@@ -82,7 +111,7 @@ function setupBoard() {
  |_|  \_\ \_____||____/ 
 */
 
-function setColor(index){
+function setColor(index) {
   var led = new five.Led.RGB({
     pins: {
       red: 9,
@@ -91,18 +120,18 @@ function setColor(index){
     }
   });
 
-  if(lightGate=true){
-  var myColor = ['FF0000', '00FF00', '0000FF'];
-  // Turn it on and set the initial color
+/*   if (lightGate = true) {
+    var myColor = ['FF0000', '00FF00', '0000FF'];
+    // Turn it on and set the initial color
     console.log("light gate");
-  led.on();
-  led.color(myColor[index]);
-  }
+    led.on();
+    led.color(myColor[index]);
+  } */
 
 }
 
-function alertLights(){
-  
+function alertLights() {
+
   var led = new five.Led.RGB({
     pins: {
       red: 9,
@@ -110,17 +139,17 @@ function alertLights(){
       blue: 11
     }
   });
-  lightGate=false;
+  lightGate = false;
   console.log("red");
   led.on();
   led.color("#FF0000");
   led.strobe(100);
   led.off();
-  setTimeout(alertBlue,1000);
+  timeBlue=setTimeout(alertBlue, 1000);
 
 }
 
-function alertBlue(){
+function alertBlue() {
   var led = new five.Led.RGB({
     pins: {
       red: 9,
@@ -134,8 +163,13 @@ function alertBlue(){
   console.log("blue");
   led.off();
 
-  setTimeout(alertLights,1000);
+  timeRed=setTimeout(alertLights, 1000);
 
+}
+
+function clearTime(){
+  clearTimeout(timeBlue);
+  clearTimeout(timeRed);
 }
 
 
@@ -148,16 +182,16 @@ function alertBlue(){
   ____) || |____ | | \ \   \  /  | |__| |
  |_____/ |______||_|  \_\   \/    \____/                                                                                   
 */
-  function sliderChange(val){
-    $('#out').html(val);
-    sweep(val);
+function sliderChange(val) {
+  $('#out').html(val);
+  sweep(val);
 
-  }  
+}
 
 
- function sweep(val){
+function sweep(val) {
   var servo = new five.Servo({
-    pin:3,
+    pin: 3,
     center: true,
     // range: [45,135], 
   });
@@ -166,7 +200,7 @@ function alertBlue(){
   //   interval: 500,
   // });
   servo.to(val);
- }     
+}
 /* 
   __  __   ____  _______  ____   _____  
  |  \/  | / __ \|__   __|/ __ \ |  __ \ 
@@ -175,13 +209,12 @@ function alertBlue(){
  | |  | || |__| |  | |  | |__| || | \ \ 
  |_|  |_| \____/   |_|   \____/ |_|  \_\                                       
 */
-function fanSlider(val)
-{
+function fanSlider(val) {
   $('#fan').html(val);
-    fan(val);
+  fan(val);
 }
 
-function fan(val){
+function fan(val) {
 
   motor = new five.Motor({
     pins: {
@@ -190,12 +223,12 @@ function fan(val){
       cdir: 4
     }
   });
-  if(val>0){
+  if (val > 0) {
     motor.forward(val);
   }
-  else if(val<0){
-    var posValue=val*-1;
+  else if (val < 0) {
+    var posValue = val * -1;
     motor.reverse(posValue);
   }
-  
+
 }
