@@ -141,6 +141,7 @@ h1#welcome{
     /* height: 150px; */
     border-radius: 50px;
     box-shadow: 0px 0px 20px #bebebe;
+    margin-top: -50px;
     margin-bottom: 20px;
     padding: 5px 5px;
 }
@@ -163,25 +164,15 @@ h1#topMessage{
 }
 
 h1#current{
-    position: relative;
+    position: absolute;
     /* display:inline-block; */
     margin: auto;
-    float: left;
+    /* float: left; */
     font-family: 'Open Sans', sans-serif;
     /* text-shadow: 1px 1px 4px; */
     font-size: 20px;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 
-}
-h1#fanText{
-    position: relative;
-    /* display:inline-block; */
-    margin: auto;
-    float: left;
-    font-family: 'Open Sans', sans-serif;
-    /* text-shadow: 1px 1px 4px; */
-    font-size: 20px;
-    padding-bottom: 20px;
 }
 #outer_wrapper{
     margin: 0 auto;
@@ -392,7 +383,7 @@ div#fan svg .fill
     background-color: rgba(185, 215, 223, 0.116);
     top: 0;
     box-shadow:0 4px 16px rgba(28, 181, 224, 0.479);
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 
 }
 #navLogo{
@@ -411,4 +402,50 @@ h2#logoName{
 }
 div#navLogo svg .fill{
     fill: #1CB5E0;
+}
+
+
+
+
+
+#wrapper_alert{
+    position: absolute;
+    background: #fcfcfc;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: auto;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+}
+#alert{
+    /* align-content: center; */
+    /* justify-content: center; */
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 50px;
+    padding: 50px;
+    width:60%;
+    box-shadow: 2px 2px 25px #6e6e6e;
+    /* height: 50%; */
+
+}
+
+div#warning svg{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 100px;
+}
+
+div#warning svg .fill{
+    fill: rgb(231, 216, 0);
+}
+
+
+h1#final{
+    text-align: center;
+    font-size: 25px;
 }
