@@ -2,29 +2,21 @@ var five = require("johnny-five");
 let $ = require("jquery");
 var timeBlue;
 var timeRed;
+
 function setupBoard() {
   board = new five.Board({ repl: false });
 
   board.on("ready", function () {
-    led = new five.Led(13);
+    // led = new five.Led(13);
     console.log("led initialised.");
     this.samplingInterval(1000);
     // tempo();
-    sliderChange();
+    // sliderChange();
     uiSequence();
     // setColor();
     // setupLed();
     // sweep();
-  })
-
-  // board.on("ready", rgbtest());
-  /*     board.on("ready", function() {
-        led = new five.Led(13);
-        led.blink(500);
-        console.log("led initialised.")
-      })
-      console.log("gitbuy"); */
-  // tempo();
+  });
 }
 
 /* 
@@ -51,24 +43,25 @@ function tempo() {
       clearTime();
       $('#wrapper_alert').hide(0);
 
-        if (this.fahrenheit > 104) {
-          console.log("104 bubsubsu");
-          alertLights()
-         /*  $('#wrapper_home').hide(0);
-          $('#wrapper').hide(0); */
-          $('#wrapper_alert').show(0);
-        }
-        else {
-          $('#tempo').effect("shake");
-          setColor(0);
-          console.log("hot bois");
-          sweep(150);
-          // $('#outer').toggleClass('red');
-          $('#outer').attr('class', 'red');
-        }
+      if (this.fahrenheit > 104) {
+        console.log("104 bubsubsu");
+        $('final').html(c_name + ' has high fever');
+        // alertLights()
+        /*  $('#wrapper_home').hide(0);
+         $('#wrapper').hide(0); */
+        $('#wrapper_alert').show(0);
+      }
+      else {
+        $('#tempo').effect("shake");
+        setColor(0);
+        console.log("hot bois");
+        sweep(150);
+        // $('#outer').toggleClass('red');
+        $('#outer').attr('class', 'red');
+      }
     }
-    
-    
+
+
     else if (this.fahrenheit < 100.4 && this.fahrenheit > 97.7) {
       clearTime();
       $('#wrapper_alert').hide(0);
@@ -78,26 +71,31 @@ function tempo() {
       // $('#outer').toggleClass('green');
       $('#outer').attr('class', 'green');
     }
-    
-    
+
+
     else if (this.fahrenheit < 96) {
       $('#wrapper_alert').hide(0);
       setColor(2);
       console.log("cold bois");
       sweep(30);
-      clearTime();
-
-        if (this.fahrenheit < 95) {
-          console.log("hypothermia");
-          $('#wrapper_alert').show(0);
-          alertLights();
-        }
-
-      // $('#outer').toggleClass('blue');
       $('#outer').attr('class', 'blue');
-
-
-
+      if (this.fahrenheit < 95) {
+        console.log("hypothermia");
+        // alertLights();
+        $('#final').text(c_name + ' has hypothermia. Immediate attention required');
+        $('#wrapper_alert').show(0);
+        $('#police').click(function () {
+          $('#final_m').text('Emergency services have been notified');
+          alertLights();
+        });
+        $('#emergency').click(function () {
+          $('#final_m').text('The doctor is on his way');
+          alertLights();
+        });
+        // 
+      }
+      // $('#outer').toggleClass('blue');
+      
     }
 
 
@@ -122,12 +120,12 @@ function setColor(index) {
       blue: 11
     }
   });
-  if(lightGate=true){
+  if (lightGate = true) {
     var myColor = ['FF0000', '00FF00', '0000FF'];
     // Turn it on and set the initial color
     led.on();
     led.color(myColor[index]);
-  } 
+  }
 }
 
 
@@ -141,92 +139,90 @@ function alertLights() {
   });
   led.on();
   led.color("#FF0000");
-  led.strobe(100);
-  led.off();
-  timeBlue=setTimeout(alertBlue, 1000);
+  led.strobe(500);
+  console.log('red');
+  // led.off();
+  setTimeout(alertBlue(), 1000);
+
+
 
 }
 
 function alertBlue() {
-  var led = new five.Led.RGB({
-    pins: {
-      red: 9,
-      green: 10,
-      blue: 11
+      var led = new five.Led.RGB({
+      pins: {
+        red: 9,
+        green: 10,
+        blue: 11
+      }
+    });
+    led.on();
+    led.color("#0000FF");
+    led.strobe(200);
+    console.log("blue");
+    led.off();
+    setTimeout(alertLights(), 1000);
+
+  }
+
+ 
+  /* 
+    _____  ______  _____ __      __ ____  
+    / ____||  ____||  __ \\ \    / // __ \ 
+   | (___  | |__   | |__) |\ \  / /| |  | |
+    \___ \ |  __|  |  _  /  \ \/ / | |  | |
+    ____) || |____ | | \ \   \  /  | |__| |
+   |_____/ |______||_|  \_\   \/    \____/                                                                                   
+  */
+  function sliderChange(val) {
+    $('#out').html(val);
+    sweep(val);
+
+  }
+
+
+  function sweep(val) {
+    var servo = new five.Servo({
+      pin: 3,
+      center: true,
+      // range: [45,135], 
+    });
+    // servo.center();
+    // servo.sweep({
+    //   interval: 500,
+    // });
+    servo.to(val);
+  }
+  /* 
+    __  __   ____  _______  ____   _____  
+   |  \/  | / __ \|__   __|/ __ \ |  __ \ 
+   | \  / || |  | |  | |  | |  | || |__) |
+   | |\/| || |  | |  | |  | |  | ||  _  / 
+   | |  | || |__| |  | |  | |__| || | \ \ 
+   |_|  |_| \____/   |_|   \____/ |_|  \_\                                       
+  */
+  function fanSlider(val) {
+    // $('#fan').html(val);
+    fan(val);
+  }
+
+  function fan(val) {
+
+    motor = new five.Motor({
+      pins: {
+        pwm: 6,
+        dir: 5,
+        cdir: 4
+      }
+    });
+    if (val > 0) {
+      motor.forward(val);
     }
-  });
-  led.on();
-  led.color("#0000FF");
-  led.strobe(200);
-  console.log("blue");
-  led.off();
-  timeRed=setTimeout(alertLights, 1000);
-}
-
-function clearTime(){
-  clearTimeout(timeBlue);
-  console.log(timeBlue);
-  clearTimeout(timeRed);
-  console.log(timeRed);
-  }
-
-
-
-/* 
-  _____  ______  _____ __      __ ____  
-  / ____||  ____||  __ \\ \    / // __ \ 
- | (___  | |__   | |__) |\ \  / /| |  | |
-  \___ \ |  __|  |  _  /  \ \/ / | |  | |
-  ____) || |____ | | \ \   \  /  | |__| |
- |_____/ |______||_|  \_\   \/    \____/                                                                                   
-*/
-function sliderChange(val) {
-  $('#out').html(val);
-  sweep(val);
-
-}
-
-
-function sweep(val) {
-  var servo = new five.Servo({
-    pin: 3,
-    center: true,
-    // range: [45,135], 
-  });
-  // servo.center();
-  // servo.sweep({
-  //   interval: 500,
-  // });
-  servo.to(val);
-}
-/* 
-  __  __   ____  _______  ____   _____  
- |  \/  | / __ \|__   __|/ __ \ |  __ \ 
- | \  / || |  | |  | |  | |  | || |__) |
- | |\/| || |  | |  | |  | |  | ||  _  / 
- | |  | || |__| |  | |  | |__| || | \ \ 
- |_|  |_| \____/   |_|   \____/ |_|  \_\                                       
-*/
-function fanSlider(val) {
-  $('#fan').html(val);
-  fan(val);
-}
-
-function fan(val) {
-
-  motor = new five.Motor({
-    pins: {
-      pwm: 6,
-      dir: 5,
-      cdir: 4
+    else if (val < 0) {
+      var posValue = val * -1;
+      motor.reverse(posValue);
     }
-  });
-  if (val > 0) {
-    motor.forward(val);
-  }
-  else if (val < 0) {
-    var posValue = val * -1;
-    motor.reverse(posValue);
+
   }
 
-}
+

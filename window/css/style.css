@@ -23,7 +23,13 @@ h1#invalid{
     font-size: 10px;
     color: #f12711;
     
+}
+h4{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #f12711;
     
+
 }
 #wrapper{
     position: absolute;
