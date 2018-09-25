@@ -5,8 +5,8 @@ const Other = require('./service');
 let applicationHTML = `${__dirname}/../window/index.html`;
 
 const StartWindowSize = {
-  width: 1024,
-  height: 800
+  width: 1000,
+  height: 1000
 }
 
 Other.showMessage()

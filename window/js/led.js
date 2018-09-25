@@ -7,8 +7,11 @@ function setupBoard() {
   board = new five.Board({ repl: false });
 
   board.on("ready", function () {
+    $('#wrapper_alert').hide(0);
     // led = new five.Led(13);
     console.log("led initialised.");
+    $('#wrapper').fadeIn(700);
+
     this.samplingInterval(1000);
     // tempo();
     // sliderChange();
@@ -40,16 +43,21 @@ function tempo() {
     $('#tempo').html(this.fahrenheit + "°");
 
     if (this.fahrenheit > 102) {
-      clearTime();
       $('#wrapper_alert').hide(0);
 
-      if (this.fahrenheit > 104) {
-        console.log("104 bubsubsu");
-        $('final').html(c_name + ' has high fever');
-        // alertLights()
-        /*  $('#wrapper_home').hide(0);
-         $('#wrapper').hide(0); */
+      if (this.fahrenheit > 106) {
+        console.log("hyperthermia");
+        // alertLights();
+        $('#final').text(c_name + ' has HIGH FEVER. Immediate attention required');
         $('#wrapper_alert').show(0);
+        $('#police').click(function () {
+          $('#final_m').text('Emergency services have been notified');
+          alertLights();
+        });
+        $('#emergency').click(function () {
+          $('#final_m').text('The doctor is on his way');
+          alertLights();
+        });
       }
       else {
         $('#tempo').effect("shake");
@@ -63,7 +71,6 @@ function tempo() {
 
 
     else if (this.fahrenheit < 100.4 && this.fahrenheit > 97.7) {
-      clearTime();
       $('#wrapper_alert').hide(0);
       setColor(1);
       console.log("safe bois");
@@ -79,7 +86,7 @@ function tempo() {
       console.log("cold bois");
       sweep(30);
       $('#outer').attr('class', 'blue');
-      if (this.fahrenheit < 95) {
+      if (this.fahrenheit < 93) {
         console.log("hypothermia");
         // alertLights();
         $('#final').text(c_name + ' has hypothermia. Immediate attention required');
@@ -127,9 +134,23 @@ function setColor(index) {
     led.color(myColor[index]);
   }
 }
+function alertLights(){
+  
+  var led = new five.Led.RGB({
+    pins: {
+      red: 9,
+      green: 10,
+      blue: 11
+    }
+  });
+  console.log("red");
+  led.on();
+  led.color("#FF0000");
+  led.strobe(200);
+  setTimeout(alertBlue,500);
+}
 
-
-function alertLights() {
+function alertBlue(){
   var led = new five.Led.RGB({
     pins: {
       red: 9,
@@ -138,32 +159,12 @@ function alertLights() {
     }
   });
   led.on();
-  led.color("#FF0000");
-  led.strobe(500);
-  console.log('red');
-  // led.off();
-  setTimeout(alertBlue(), 1000);
-
-
+  led.color("#0000FF");
+  led.strobe(200);
+  console.log("blue");
+  setTimeout(alertLights,500);
 
 }
-
-function alertBlue() {
-      var led = new five.Led.RGB({
-      pins: {
-        red: 9,
-        green: 10,
-        blue: 11
-      }
-    });
-    led.on();
-    led.color("#0000FF");
-    led.strobe(200);
-    console.log("blue");
-    led.off();
-    setTimeout(alertLights(), 1000);
-
-  }
 
  
   /* 
